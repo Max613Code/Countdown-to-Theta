@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public static class Reference
@@ -13,5 +14,15 @@ public static class Reference
         GM = GameObject.Find("GameManager");
         UI = GameObject.Find("Main Canvas");
         UM = GameObject.Find("UpgradeManager");
+    }
+
+    public static decimal customUpgradeFunc(VariableClass var)
+    {
+        if (var.name == "b0V1") //Best way i could think of for having custom upgrade functions, called from UM.
+        {
+            return var.value + var.level * var.level/10;
+        }
+
+        return 0;
     }
 }
