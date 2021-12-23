@@ -16,9 +16,9 @@ public static class Reference
         UM = GameObject.Find("UpgradeManager");
     }
 
-    public static decimal customUpgradeFunc(VariableClass var)
+    public static double customUpgradeFunc(VariableClass var, int whichCustom)
     {
-        if (var.name == "b0V1") //Best way i could think of for having custom upgrade functions, called from UM.
+        if (var.name == "b0V1" && whichCustom == 1) //Best way i could think of for having custom upgrade functions, called from UM.
         {
             return var.value + var.level * var.level/10;
         }

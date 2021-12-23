@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,37 +12,40 @@ public class GameManager : MonoBehaviour
     //The String is the name of the variable, easier to access this way.
     
     
-    public decimal totalTime = 0;
+    public double totalTime = 0;
 
-    public decimal deltaX { get; set; }
-    public decimal X { get; set; }
-    public decimal maxX { get; set; }
-    public decimal deltaTheta { get; set; }
-    public decimal Theta { get; set; }
-    public decimal Omega { get; set; }
+    public double deltaX { get; set; }
+    public double X { get; set; }
+    public double maxX { get; set; }
+    public double deltaTheta { get; set; }
+    public double Theta { get; set; }
+    public double Omega { get; set; }
     void Start()
     {
         Application.targetFrameRate = 60;
         foreach (var variable in variableSos)
         { //Initialize the variable classes into the dictionary
-            variables[variable.name] = new VariableClass(variable.name, (decimal)variable.initialValue);
+            variables[variable.name] = new VariableClass(variable.name, (double)variable.initialValue);
         }
     }
     
     void Update()
     { //Updating stuff according to the equations.
-        totalTime += (decimal) Time.deltaTime;
+        totalTime += Time.deltaTime;
         
         deltaX = deltaXFunction(1);
-        X += deltaX;
+        X += deltaX * Time.deltaTime;
         maxX = Math.Max(X, maxX);
         
-        deltaTheta = 
+        Debug.Log(Theta + " " + totalTime);
+
+        deltaTheta = deltaThetaFunction(1);
+        Theta += deltaTheta * Time.deltaTime;
         
         Omega = maxX - Theta;
     }
 
-    private decimal deltaXFunction(int tier)
+    private double deltaXFunction(int tier)
     {
         if (tier == 1 && variables.ContainsKey("a0V1")) //Check if the dictionary has this variable.
         {
@@ -54,9 +58,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private decimal deltaThetaFunction()
+    private double deltaThetaFunction(int tier)
     {
-        return 0;
+        if (tier == 1)
+        { //https://www.desmos.com/calculator/oshbwca2nv
+            var a = totalTime;//Make code simpler
+            return (Math.Pow( 1+Math.Pow(a/10,  2+Math.Log( 1+Math.Pow(a/10,4), Math.E )/10 ), 1+ Math.Sqrt(a/10000)  ))
+                /(double)100000;
+        }
+        else
+        {
+            Debug.Log("Something went wrong for delta Theta!");
+            return -1;
+        }
     }
 
     /*private decimal BIMax(decimal x, decimal y)
@@ -65,5 +79,5 @@ public class GameManager : MonoBehaviour
             return x;
         else
             return y;
-    }*/ //Not needed as we are not using BigInteger, but decimals now.
+    }*/ //Not needed as we are not using BigInteger, but decimals now.y
 }

@@ -3,11 +3,11 @@ using System.Numerics;
 public class VariableClass
 {
     public string name { get; }
-    public decimal value { get; set; }
-    public decimal initialValue { get; set; } //In case we need to reset or something idk.
+    public double value { get; set; }
+    public double initialValue { get; set; } //In case we need to reset or something idk.
     public int level { get; set; }
 
-    public VariableClass(string name, decimal value) //Regular initializer.
+    public VariableClass(string name, double value) //Regular initializer.
     {
         this.name = name;
         this.value = value;
