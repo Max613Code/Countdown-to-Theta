@@ -6,4 +6,6 @@ public class VariableSO : ScriptableObject
 {
     public string variableName;
     public float initialValue;
+    public string displaySymbol;
+    public bool hasSpecialUpdatedText = false;
 }

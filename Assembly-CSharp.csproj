@@ -54,15 +54,15 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\UIManager.cs" />
      <Compile Include="Assets\Scripts\Irrelevant\BigIntegerMathFunctions.cs" />
+     <Compile Include="Assets\Scripts\UpgradeClass.cs" />
      <Compile Include="Assets\Scripts\UITest.cs" />
      <Compile Include="Assets\Scripts\VariableClass.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjectsScripts\UpgradeSO.cs" />
+     <Compile Include="Assets\Scripts\UpgradeManager.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjectsScripts\VariableSO.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Reference.cs" />
      <Compile Include="Assets\Scripts\Upgrade.cs" />
-     <Compile Include="Assets\Scripts\UpgradeManager.cs" />
-     <Compile Include="Assets\Scripts\UpgradeClass.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

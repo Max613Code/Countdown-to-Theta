@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variableName: a0V1
   initialValue: 0.1
+  displaySymbol: a
+  hasSpecialUpdatedText: 0
