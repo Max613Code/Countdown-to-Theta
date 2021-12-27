@@ -19,6 +19,8 @@
           <e p="UIManager.cs" t="Include" />
           <e p="UITest.cs" t="Include" />
           <e p="Upgrade.cs" t="Include" />
+          <e p="UpgradeClass.cs" t="Include" />
+          <e p="UpgradeManager.cs" t="Include" />
           <e p="VariableClass.cs" t="Include" />
         </e>
       </e>

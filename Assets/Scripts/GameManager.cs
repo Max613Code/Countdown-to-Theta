@@ -30,19 +30,8 @@ public class GameManager : MonoBehaviour
     }
     
     void Update()
-    { //Updating stuff according to the equations.
-        totalTime += Time.deltaTime;
-        
-        deltaX = deltaXFunction(1);
-        X += deltaX * Time.deltaTime;
-        maxX = Math.Max(X, maxX);
-        
-        Debug.Log(Theta + " " + totalTime);
-
-        deltaTheta = deltaThetaFunction(1);
-        Theta += deltaTheta * Time.deltaTime;
-        
-        Omega = maxX - Theta;
+    {
+        updateStandardVariables();
     }
 
     private double deltaXFunction(int tier)
@@ -70,6 +59,34 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Something went wrong for delta Theta!");
             return -1;
+        }
+    }
+
+    private void updateStandardVariables()
+    {
+        //Updating stuff according to the equations.
+        totalTime += Time.deltaTime;
+        
+        deltaX = deltaXFunction(1);
+        X += deltaX * Time.deltaTime;
+        maxX = Math.Max(X, maxX);
+        
+        Debug.Log(Theta + " " + totalTime);
+
+        deltaTheta = deltaThetaFunction(1);
+        Theta += deltaTheta * Time.deltaTime;
+        
+        Omega = maxX - Theta;
+    }
+
+    public void updateVariable(string varName, double newValue)
+    {
+        if (variables.ContainsKey(varName))
+        {
+            if (variables[varName].GetType() == newValue.GetType())
+            {
+                variables[varName].value = newValue;
+            }
         }
     }
 

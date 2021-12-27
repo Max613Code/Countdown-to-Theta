@@ -16,4 +16,7 @@ public class UpgradeSO : ScriptableObject
 
     [SerializeField] public float rateOfCost;
     [SerializeField] public float rateOfEffect;
+
+    [Header("Custom Num")] [SerializeField]
+    public int customUpgradeNum;
 }
