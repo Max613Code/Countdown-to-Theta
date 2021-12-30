@@ -8,6 +8,7 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="GameManager.cs" t="Include" />
+          <e p="Graph.cs" t="Include" />
           <e p="Irrelevant" t="Include">
             <e p="BigIntegerMathFunctions.cs" t="Include" />
           </e>

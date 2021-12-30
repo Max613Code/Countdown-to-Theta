@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variableName: OmegaV0
   initialValue: 0
-  displaySymbol: Omega
+  displaySymbol: "\u03A9"
   hasSpecialUpdatedText: 1

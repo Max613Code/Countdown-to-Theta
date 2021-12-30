@@ -24,6 +24,16 @@ public class GameManager : MonoBehaviour
     private List<VariableClass> standardDisplayVariablesToUpdate = new List<VariableClass>();
 
     private List<int> terms = new List<int>();
+    
+    
+    //Graph:
+    [Header("Graph")] public int graphQuality;
+    
+    private List<double> omegaHistory = new List<double>();
+    private int graphCount = 0;
+    private double graphScale = 0;
+    
+    
     void Start()
     {
         Reference.find();//Important, or else null exception error, have to actually find the scripts
@@ -41,13 +51,18 @@ public class GameManager : MonoBehaviour
 
         createDisplayVariables(standardDisplayVariablesToUpdate);
         
-        terms.Add(1);
+        terms.Add(1); //At first only have the ax term
+        
+        initializeOmegaHistory();
+        Reference.GraphScript.createPoints(omegaHistory, graphQuality);
     }
     
     void Update()
     {
         updateStandardVariables();
         updateDisplayVariables(standardDisplayVariablesToUpdate);
+        updateHistoryAndGraph();
+        
     }
 
     private double deltaXFunction(List<int> terms) //Easiser than having a bunch of cases, specify which terms 1,2,3,4... in the arraylist to have it added here. 
@@ -72,7 +87,7 @@ public class GameManager : MonoBehaviour
         { //https://www.desmos.com/calculator/oshbwca2nv
             var a = variables["totalTimeV0"].value;//Make code simpler
             return (Math.Pow( 1+Math.Pow(a/10,  2+Math.Log( 1+Math.Pow(a/10,4), Math.E )/10 ), 1+ Math.Sqrt(a/10000)  ))
-                /(double)100000;
+                /(double)10000;
         }
         else
         {
@@ -114,7 +129,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i=0;i<variables.Count-1;i++) //Create text object for each variable to be displayed like x, theta, omega, time
         {
-            Reference.UI.createVariableDisplayText(variables[i].name, variables[i].displaySymbol + String.Format(" = {0}", variables[i].value));
+            Reference.UI.createVariableDisplayText(variables[i].name, variables[i].displaySymbol + String.Format(" = {0}", variables[i].getFormatted()));
         }
     }
 
@@ -122,7 +137,50 @@ public class GameManager : MonoBehaviour
     {
         for (int i=0;i<variables.Count-1;i++) //Create text object for each variable to be displayed like x, theta, omega, time
         {
-            Reference.UI.updateVariabeDisplayText(variables[i].name, variables[i].displaySymbol + String.Format(" = {0}", variables[i].value));
+            Reference.UI.updateVariabeDisplayText(variables[i].name, variables[i].displaySymbol + String.Format(" = {0}", variables[i].getFormatted()));
+        }
+    }
+    
+    
+    
+    //Graph stuff
+    public void initializeOmegaHistory()
+    {
+        for (int _ = 0; _< graphQuality;_++)
+        {
+            omegaHistory.Add(0);
+        }
+    }
+    public void updateHistoryAndGraph()
+    {
+        Debug.Log(omegaHistory.Count);
+        if (graphCount == 0)
+        {
+            for (int i = omegaHistory.Count-1; i > 0; i--)
+            {
+                omegaHistory[i] = omegaHistory[i-1];
+            }
+
+            omegaHistory[0] = variables["OmegaV0"].value;
+            Reference.GraphScript.updatePoints(omegaHistory, getGraphScale());
+        }
+
+        graphCount = (graphCount + 1) % 5;
+    }
+
+    public double getGraphScale() //We divide the height by this value in the graph script, make sure does not overflow and yeah.
+    {
+        var temp = Reference.GraphScript.graphPanel.transform as RectTransform;
+        var height = temp.sizeDelta.y; //Get height of the graph panel
+        if (variables["OmegaV0"].value < height)
+        {
+            return 1;
+        }
+        else
+        {
+            
+            graphScale = Math.Max(Math.Max(omegaHistory[0] / (height), graphScale),0.001); //This works I guess, if the value goesdown then the scale does not change.
+            return graphScale;
         }
     }
 

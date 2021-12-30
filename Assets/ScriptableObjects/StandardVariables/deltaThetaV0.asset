@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variableName: deltaThetaV0
   initialValue: 0
-  displaySymbol: dTheta
+  displaySymbol: "d\u03B8"
   hasSpecialUpdatedText: 0
