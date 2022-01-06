@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         
         initializeOmegaHistory();
         Reference.GraphScript.createPoints(omegaHistory, graphQuality);
+
     }
     
     void Update()
@@ -153,7 +154,7 @@ public class GameManager : MonoBehaviour
     }
     public void updateHistoryAndGraph()
     {
-        Debug.Log(omegaHistory.Count);
+        //Debug.Log(omegaHistory.Count);
         if (graphCount == 0)
         {
             for (int i = omegaHistory.Count-1; i > 0; i--)
@@ -165,7 +166,7 @@ public class GameManager : MonoBehaviour
             Reference.GraphScript.updatePoints(omegaHistory, getGraphScale());
         }
 
-        graphCount = (graphCount + 1) % 5;
+        graphCount = (graphCount + 1) % 10;
     }
 
     public double getGraphScale() //We divide the height by this value in the graph script, make sure does not overflow and yeah.

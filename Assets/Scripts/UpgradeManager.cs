@@ -13,12 +13,21 @@ public class UpgradeManager : MonoBehaviour
         foreach (var upgrade in upgradeSos)
         {
             if (upgrade.type == "regular")
-                upgrades[upgrade.upgradeName] = new UpgradeClass(upgrade.upgradeName, upgrade.upgradeText,
-                    upgrade.variableName, upgrade.upgradeTextFormatVariableName, upgrade.type, upgrade.rateOfCost,
+            {
+                upgrades[upgrade.upgradeName] = new UpgradeClass(upgrade.upgradeName, upgrade.variableName,upgrade.costVariable,
+                    upgrade.upgradeText, upgrade.upgradeTextFormatVariableName, upgrade.initialCost, upgrade.type,
+                    upgrade.rateOfCost,
                     upgrade.rateOfEffect);
+                
+            }
             else if (upgrade.type == "custom")
-                upgrades[upgrade.upgradeName] = new UpgradeClass(upgrade.upgradeName, upgrade.upgradeText,
-                    upgrade.variableName, upgrade.upgradeTextFormatVariableName, upgrade.type, upgrade.customUpgradeNum);
+                upgrades[upgrade.upgradeName] = new UpgradeClass(upgrade.upgradeName, upgrade.variableName, upgrade.costVariable,
+                    upgrade.upgradeText, upgrade.upgradeTextFormatVariableName, upgrade.initialCost,upgrade.type, upgrade.customUpgradeNum);
+
+            Reference.UI.createUpdateT1(upgrades[upgrade.upgradeName]);
+            
+            
+            
         }
     }
 }

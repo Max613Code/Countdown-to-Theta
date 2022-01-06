@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 1427276392659114827}
   - component: {fileID: 1618755020168066997}
   - component: {fileID: 4510844543200784538}
-  - component: {fileID: 5804788457853414164}
+  - component: {fileID: 970055431286638970}
   m_Layer: 5
   m_Name: UpgradeT1
   m_TagString: Untagged
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5804788457853414164
+--- !u!114 &970055431286638970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,7 +245,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8668085616678205928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bc5a53e1d750de4fadcaddfe361dbc2, type: 3}
+  m_Script: {fileID: 11500000, guid: 52daf974d13a8d5439d23d84c61f65ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  labelText: {fileID: 2483332851296918029}
+  varDisplayText: {fileID: 2483332851296918029}
+  upgDisplayText: {fileID: 207108225899038488}

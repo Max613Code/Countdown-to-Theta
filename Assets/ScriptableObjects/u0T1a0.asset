@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: u0T1a0
   variableName: a0V1
+  costVariable: XV0
   upgradeText: a = {0}
   upgradeTextFormatVariableName: a0V1
+  initialCost: 1
   type: regular
   rateOfCost: 1.2
   rateOfEffect: 1.1
+  customUpgradeNum: 0

@@ -11,6 +11,9 @@ public class UpgradeClass
     public string variableName { get; set; } //Which variable this upgrade is referencing.
     public string upgradeText { get; set; }
     public string upgradeTextFormat { get; set; } //upgradeText has {0} which would be replaced by the variable it is referencing.
+    public string costVariable { get; set; } //Name of which variable it costs 
+    public double cost { get; set; } 
+    public double initialCost { get; set; }
     
     public string upgradeType { get; set; }
     
@@ -21,25 +24,31 @@ public class UpgradeClass
     //Custom
     public int customUpgradeNum { get; set; } //Which custom functoni from that function it uses. can be 1,2,3,4,...
 
-    public UpgradeClass([NotNull] string upgradeName, [NotNull] string variableName, [NotNull] string upgradeText,
-        [NotNull] string upgradeTextFormat, [NotNull] string upgradeType, double rateOfCost, double rateOfEffect)
+    public UpgradeClass([NotNull] string upgradeName, [NotNull] string variableName, [NotNull] string costVariable, [NotNull] string upgradeText,
+        [NotNull] string upgradeTextFormat, double initialCost, [NotNull] string upgradeType, double rateOfCost, double rateOfEffect)
     {
         this.upgradeName = upgradeName ?? throw new ArgumentNullException(nameof(upgradeName));
         this.variableName = variableName ?? throw new ArgumentNullException(nameof(variableName));
+        this.costVariable = costVariable ?? throw new ArgumentNullException(nameof(costVariable));
         this.upgradeText = upgradeText ?? throw new ArgumentNullException(nameof(upgradeText));
         this.upgradeTextFormat = upgradeTextFormat ?? throw new ArgumentNullException(nameof(upgradeTextFormat));
+        this.initialCost = initialCost; 
+        this.cost = initialCost;
         this.upgradeType = upgradeType ?? throw new ArgumentNullException(nameof(upgradeType));
         this.rateOfCost = rateOfCost;
         this.rateOfEffect = rateOfEffect;
     }
 
-    public UpgradeClass([NotNull] string upgradeName, [NotNull] string variableName, [NotNull] string upgradeText,
-        [NotNull] string upgradeTextFormat, [NotNull] string upgradeType, int customUpgradeNum) //For custom upgrade types not regular, like function overiding for this.
+    public UpgradeClass([NotNull] string upgradeName, [NotNull] string variableName, [NotNull] string costVariable, [NotNull] string upgradeText,
+        [NotNull] string upgradeTextFormat, double initalCost, [NotNull] string upgradeType, int customUpgradeNum) //For custom upgrade types not regular, like function overiding for this.
     {
         this.upgradeName = upgradeName ?? throw new ArgumentNullException(nameof(upgradeName));
         this.variableName = variableName ?? throw new ArgumentNullException(nameof(variableName));
+        this.costVariable = costVariable ?? throw new ArgumentNullException(nameof(costVariable));
         this.upgradeText = upgradeText ?? throw new ArgumentNullException(nameof(upgradeText));
-        this.upgradeTextFormat = upgradeTextFormat ?? throw new ArgumentNullException(nameof(upgradeTextFormat));
+        this.upgradeTextFormat = upgradeTextFormat ?? throw new ArgumentNullException(nameof(upgradeTextFormat)); 
+        this.initialCost = initialCost;
+        this.cost = initialCost;
         this.upgradeType = upgradeType ?? throw new ArgumentNullException(nameof(upgradeType));
         this.customUpgradeNum = customUpgradeNum;
     }

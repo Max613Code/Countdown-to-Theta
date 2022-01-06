@@ -1298,7 +1298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6e7d6f0fa28904c96875d18c9dc5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSos: []
+  upgradeSos:
+  - {fileID: 11400000, guid: 0bc063777234f89439c8ca73251a1a44, type: 2}
 --- !u!4 &1395299721
 Transform:
   m_ObjectHideFlags: 0
@@ -1497,3 +1498,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variableDisplay: {fileID: 5870305035119201158, guid: 1629960dd2c577a4ab4adf2d0c28a588, type: 3}
   variableDisplayPanel: {fileID: 906165266}
+  upgradeT1Display: {fileID: 970055431286638970, guid: f5d254dfe2e6a9b4c8cccaad20b60f45, type: 3}
+  upgradeT1DisplayPanel: {fileID: 806819906}
