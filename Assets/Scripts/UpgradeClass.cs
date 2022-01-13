@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class UpgradeClass
+public class UpgradeClass  //Need to update cost, cost impacted variable, levels and stuff, and impacted level.
 {
 
     public string upgradeName { get; set; }
@@ -14,7 +14,7 @@ public class UpgradeClass
     public string costVariable { get; set; } //Name of which variable it costs 
     public double cost { get; set; } 
     public double initialCost { get; set; }
-    
+
     public string upgradeType { get; set; }
     
     //Regular
@@ -40,7 +40,7 @@ public class UpgradeClass
     }
 
     public UpgradeClass([NotNull] string upgradeName, [NotNull] string variableName, [NotNull] string costVariable, [NotNull] string upgradeText,
-        [NotNull] string upgradeTextFormat, double initalCost, [NotNull] string upgradeType, int customUpgradeNum) //For custom upgrade types not regular, like function overiding for this.
+        [NotNull] string upgradeTextFormat, double initialCost, [NotNull] string upgradeType, int customUpgradeNum) //For custom upgrade types not regular, like function overiding for this.
     {
         this.upgradeName = upgradeName ?? throw new ArgumentNullException(nameof(upgradeName));
         this.variableName = variableName ?? throw new ArgumentNullException(nameof(variableName));

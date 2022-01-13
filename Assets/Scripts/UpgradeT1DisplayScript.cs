@@ -7,6 +7,7 @@ public class UpgradeT1DisplayScript : MonoBehaviour
 {
     [SerializeField] private UnityEngine.UI.Text varDisplayText;
     [SerializeField] private UnityEngine.UI.Text upgDisplayText;
+    [SerializeField] public string upgradeName;
 
     public string VariableUpgradeDisplay
     {
@@ -30,5 +31,10 @@ public class UpgradeT1DisplayScript : MonoBehaviour
         {
             upgDisplayText.text = value;
         }
+    }
+
+    public void purchase()
+    {
+        Reference.UM.purchase(upgradeName,1);
     }
 }

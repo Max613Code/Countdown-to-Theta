@@ -645,7 +645,6 @@ GameObject:
   - component: {fileID: 682701566}
   - component: {fileID: 682701565}
   - component: {fileID: 682701564}
-  - component: {fileID: 682701563}
   m_Layer: 5
   m_Name: Upgrade T1 Scrollview
   m_TagString: Untagged
@@ -674,21 +673,6 @@ RectTransform:
   m_AnchoredPosition: {x: 351.46, y: 224.51}
   m_SizeDelta: {x: 702.924, y: 449.021}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &682701563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682701561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3bc89e8652339e458bc3a362cac1d2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemCount: 50
-  itemPrefab: {fileID: 9207046110932522342, guid: d8496f0ebf777114da6eb7ea1238e478, type: 3}
-  itemContainer: {fileID: 806819906}
 --- !u!114 &682701564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1261,6 +1245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variableSos:
   - {fileID: 11400000, guid: a8a1c56d59f1939499f028d211004163, type: 2}
+  - {fileID: 11400000, guid: 37d37b6f56faafc4b8dd460713fe4e24, type: 2}
   - {fileID: 11400000, guid: d7c9eb9d20b4b5e42a356bcbbc5833e7, type: 2}
   - {fileID: 11400000, guid: 523451a9720082046978d48623f05517, type: 2}
   - {fileID: 11400000, guid: c437e2ae592a31f49ba02a9c3ad3fc44, type: 2}
@@ -1300,6 +1285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeSos:
   - {fileID: 11400000, guid: 0bc063777234f89439c8ca73251a1a44, type: 2}
+  - {fileID: 11400000, guid: 54116a6f03a5fd94083f32e935272773, type: 2}
 --- !u!4 &1395299721
 Transform:
   m_ObjectHideFlags: 0

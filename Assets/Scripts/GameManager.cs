@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
         createDisplayVariables(standardDisplayVariablesToUpdate);
         
-        terms.Add(1); //At first only have the ax term
+        terms.Add(1); terms.Add(2);//At first only have the ax+b term
         
         initializeOmegaHistory();
         Reference.GraphScript.createPoints(omegaHistory, graphQuality);
@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
         variables["OmegaV0"].value = variables["maxXV0"].value - variables["ThetaV0"].value;
     }
 
-    public void updateVariable(string varName, double newValue)
+    public void updateVariable(string varName, double newValue)//A bit useless?
     {
         if (variables.ContainsKey(varName))  //Just update a variable with a new value
         {

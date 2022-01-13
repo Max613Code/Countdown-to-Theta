@@ -9,6 +9,7 @@ public class VariableClass
     public double initialValue { get; set; }//In case we need to reset or something idk.
 
     public int level { get; set; }
+    public int purchasedLevel { get; set; } //For something thatmaybe auto generates a variable or something
     
     public string displaySymbol { get; set; }
 
@@ -23,6 +24,7 @@ public class VariableClass
         this.value = value;
         this.initialValue = value;
         this.level = 1;
+        this.purchasedLevel = 1;
         this.displaySymbol = displaySymbol;
     }
 
