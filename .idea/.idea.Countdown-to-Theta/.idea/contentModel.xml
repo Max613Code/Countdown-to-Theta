@@ -14,6 +14,7 @@
           </e>
           <e p="Reference.cs" t="Include" />
           <e p="ScriptableObjectsScripts" t="Include">
+            <e p="UnlockableSO.cs" t="Include" />
             <e p="UpgradeSO.cs" t="Include" />
             <e p="VariableSO.cs" t="Include" />
           </e>

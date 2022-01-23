@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
@@ -22,7 +23,7 @@ public class UpgradeManager : MonoBehaviour
             }
             else if (upgrade.type == "custom")
                 upgrades[upgrade.upgradeName] = new UpgradeClass(upgrade.upgradeName, upgrade.variableName, upgrade.costVariable,
-                    upgrade.upgradeText, upgrade.upgradeTextFormatVariableName, upgrade.initialCost,upgrade.type, upgrade.customUpgradeNum);
+                    upgrade.upgradeText, upgrade.upgradeTextFormatVariableName, upgrade.initialCost,upgrade.type, upgrade.customUpgradeEffectName, upgrade.customUpgradeCostName);
 
             Reference.UI.createUpdateT1(upgrades[upgrade.upgradeName]);
             
@@ -61,9 +62,11 @@ public class UpgradeManager : MonoBehaviour
                 Reference.GM.variables[upgrade.costVariable].value -= upgrade.cost;
                 
                 updateVariableLevel(Reference.GM.variables[upgrade.variableName],1);
-               
-                upgrade.cost *= 1.4; //Can change this sometime later to be maybe a custom function
-                Reference.GM.variables[upgrade.variableName].value = customUpgradeFunction(Reference.GM.variables[upgrade.variableName], upgrade.customUpgradeNum); //Just updating the regular stuff
+                
+                Reference.GM.variables[upgrade.variableName].value = customUpgradeFunction(Reference.GM.variables[upgrade.variableName], upgrade, upgrade.customUpgradeEffectName); //Just updating the regular stuff
+                upgrade.cost = customCostFunction(Reference.GM.variables[upgrade.variableName], upgrade,
+                    upgrade.customUpgradeCostName);
+                //Use the custom functions to set the referenced variable and the cost of the upgrade.
                 
                 Reference.UI.updateUpgradeText(upgradeName);
 
@@ -71,13 +74,13 @@ public class UpgradeManager : MonoBehaviour
         }
     }
     
-    public double customUpgradeFunction(VariableClass var, int whichCustom)
+    
+    
+    public double customUpgradeFunction(VariableClass var, UpgradeClass upgrade, string whichCustom)
     {
-        
         //Debug.Log(var.name + " " + whichCustom);
-        if (var.name == "b0V1" && whichCustom == 1) //Best way i could think of for having custom upgrade functions, 
+        if (var.name == "b0V1" && whichCustom == "b0V1 additive square") //Best way i could think of for having custom upgrade functions, 
         {
-            Debug.Log(var.value + var.level * var.level / 10 + " " + var.level);
             return var.value + (double)var.level * (double)var.level/10;
         }
         else
@@ -88,9 +91,18 @@ public class UpgradeManager : MonoBehaviour
         return 0;
     }
 
-    public double customCostFunc(VariableClass var, int whichCustom)
+    public double customCostFunction(VariableClass var, UpgradeClass upgrade, string whichCustom)
     {
-        //To be implemented
+        Debug.Log(whichCustom);
+        if (var.name == "b0V1" && whichCustom == "b0V1 lowering cost") //Best way i could think of for having custom cost functions, 
+        {
+            return upgrade.cost *= 1.2 + Math.Min(0.2 / (var.level / 10), 0.2);//Cost goes from 1.4 to 1.2
+        }
+        else
+        {
+            Debug.Log("Custom upgrade function not found!");
+        }
+
         return 0;
     }
 

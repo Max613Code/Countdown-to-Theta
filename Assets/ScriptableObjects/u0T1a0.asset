@@ -19,6 +19,6 @@ MonoBehaviour:
   upgradeTextFormatVariableName: a0V1
   initialCost: 10
   type: regular
-  rateOfCost: 1.2
+  rateOfCost: 1.17
   rateOfEffect: 1.1
   customUpgradeNum: 0

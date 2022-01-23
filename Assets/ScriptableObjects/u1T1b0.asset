@@ -17,8 +17,9 @@ MonoBehaviour:
   costVariable: XV0
   upgradeText: b = {0}
   upgradeTextFormatVariableName: b0V1
-  initialCost: 5
+  initialCost: 2.5
   type: custom
   rateOfCost: 1.15
   rateOfEffect: 1.1
-  customUpgradeNum: 1
+  customUpgradeEffectName: b0V1 additive square
+  customUpgradeCostName: b0V1 lowering cost

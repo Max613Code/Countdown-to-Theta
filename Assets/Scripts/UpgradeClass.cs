@@ -22,7 +22,8 @@ public class UpgradeClass  //Need to update cost, cost impacted variable, levels
     public double rateOfEffect { get; set; }
     
     //Custom
-    public int customUpgradeNum { get; set; } //Which custom functoni from that function it uses. can be 1,2,3,4,...
+    public string customUpgradeEffectName { get; set; } //Which custom functoni from that function it uses.                                                 
+    public string customUpgradeCostName { get; set; }//Which cost function it uses, regular for just the regular rateOfCost one.
 
     public UpgradeClass([NotNull] string upgradeName, [NotNull] string variableName, [NotNull] string costVariable, [NotNull] string upgradeText,
         [NotNull] string upgradeTextFormat, double initialCost, [NotNull] string upgradeType, double rateOfCost, double rateOfEffect)
@@ -40,7 +41,7 @@ public class UpgradeClass  //Need to update cost, cost impacted variable, levels
     }
 
     public UpgradeClass([NotNull] string upgradeName, [NotNull] string variableName, [NotNull] string costVariable, [NotNull] string upgradeText,
-        [NotNull] string upgradeTextFormat, double initialCost, [NotNull] string upgradeType, int customUpgradeNum) //For custom upgrade types not regular, like function overiding for this.
+        [NotNull] string upgradeTextFormat, double initialCost, [NotNull] string upgradeType, string customUpgradeEffectName, string customUpgradeCostName) //For custom upgrade types not regular, like function overiding for this.
     {
         this.upgradeName = upgradeName ?? throw new ArgumentNullException(nameof(upgradeName));
         this.variableName = variableName ?? throw new ArgumentNullException(nameof(variableName));
@@ -50,6 +51,7 @@ public class UpgradeClass  //Need to update cost, cost impacted variable, levels
         this.initialCost = initialCost;
         this.cost = initialCost;
         this.upgradeType = upgradeType ?? throw new ArgumentNullException(nameof(upgradeType));
-        this.customUpgradeNum = customUpgradeNum;
+        this.customUpgradeEffectName = customUpgradeEffectName;
+        this.customUpgradeCostName = customUpgradeCostName;
     }
 }
