@@ -37,7 +37,7 @@ public class UnlockableDisplayScript : MonoBehaviour
     {
         if (Reference.UNM.purchase(unlockableName))
         {
-            Destroy(this);
+            Destroy(this.transform.parent.gameObject);
         }
     }
     

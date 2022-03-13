@@ -31,12 +31,18 @@ public class UnlockableManager : MonoBehaviour
         var unlockable = unlockables[unlockableName];
 
         if (Reference.GM.variables[unlockable.costVariable].value >= unlockable.cost)
-        {
+        { //we update 3 things, we enable the variables, we create the new upgrades, and we update the calculation of previous  upgrades i mean
             Reference.GM.variables[unlockable.costVariable].value -= unlockable.cost;
 
+            
+            for (int i = 0; i < unlockable.unlockedVariables.Length; i++)
+            {
+                Reference.GM.variables[unlockable.unlockedVariables[i]].enabled = true;
+            }
+            
             for (int i = 0; i < unlockable.newUpgrades.Length; i++)
             {
-                Reference.UM.enable(Reference.UM.upgrades[unlockable.newUpgrades[i]]); //Enable the upgrade we are adding and make it
+                Reference.UM.enable(unlockable.newUpgrades[i]); //Enable the upgrade we are adding and make it
             }
             
             for (int i = 0; i < unlockable.upgradeNames.Length; i++)
@@ -44,14 +50,13 @@ public class UnlockableManager : MonoBehaviour
                 var upgrade = Reference.UM.upgrades[unlockable.upgradeNames[i]];
                 upgrade.customUpgradeEffectName = unlockable.newCustomUpgradeEffectNames[i];
                 upgrade.upgradeText = unlockable.newUpgradeTexts[i];
+                Reference.UI.updateUpgradeText(unlockable.upgradeNames[i]);
             }
             
-            for (int i = 0; i < unlockable.unlockedVariables.Length; i++)
-            {
-                Reference.GM.variables[unlockable.unlockedVariables[i]].enabled = true;
-            }
+            return true;
+            
         }
 
-        return true;
+        return false;
     }
 }

@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
         var e = Instantiate(upgradeT1Display);
 //Debug.Log(upgrade.variableName);
         e.VariableUpgradeDisplay =
-            String.Format(upgrade.upgradeText, Reference.GM.variables[upgrade.upgradeTextFormat].getFormatted()); //Creates the text that also displays the value of the variable
+            String.Format(upgrade.upgradeText, Reference.GM.variables[upgrade.upgradeTextFormat].getFormatted(true)); //Creates the text that also displays the value of the variable
         e.CostUpgradeDisplay = Math.Round(upgrade.cost, 3).ToString("0.000") + Reference.GM.variables[upgrade.costVariable].displaySymbol;
         
         e.transform.SetParent(
@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
         var e = upgradeDisplayDictionary[upgradeName];
         var upgrade = Reference.UM.upgrades[upgradeName];
         e.VariableUpgradeDisplay =
-            String.Format(upgrade.upgradeText, Reference.GM.variables[upgrade.upgradeTextFormat].getFormatted()); //Creates the text that also displays the value of the variable
+            String.Format(upgrade.upgradeText, Reference.GM.variables[upgrade.upgradeTextFormat].getFormatted(true)); //Creates the text that also displays the value of the variable
         e.CostUpgradeDisplay = Math.Round(upgrade.cost, 3).ToString("0.000") + Reference.GM.variables[upgrade.costVariable].displaySymbol; //Formatting also borrowed from the var class
     }
 

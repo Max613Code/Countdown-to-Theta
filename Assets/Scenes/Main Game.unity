@@ -1515,7 +1515,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0394\u03A9 = max(x)-\u03B8"
+  m_Text: "\u03A9 = max(x)-\u03B8"
 --- !u!222 &988794468
 CanvasRenderer:
   m_ObjectHideFlags: 0

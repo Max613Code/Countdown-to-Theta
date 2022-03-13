@@ -17,10 +17,10 @@ MonoBehaviour:
   variableName: b1V1
   costVariable: XV0
   upgradeText: b1 = {0}
-  upgradeTextFormatVariableName: b0V1
+  upgradeTextFormatVariableName: b1V1
   initialCost: 50000
   type: custom
   rateOfCost: 1.3
-  rateOfEffect: 0
+  rateOfEffect: 1.3
   customUpgradeEffectName: b1V1 additive inverse
   customUpgradeCostName: default

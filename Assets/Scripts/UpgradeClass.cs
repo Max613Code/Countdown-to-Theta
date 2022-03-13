@@ -44,7 +44,7 @@ public class UpgradeClass  //Need to update cost, cost impacted variable, levels
     }
 
     public UpgradeClass([NotNull] string upgradeName, [NotNull] bool enabled, [NotNull] string variableName, [NotNull] string costVariable, [NotNull] string upgradeText,
-        [NotNull] string upgradeTextFormat, double initialCost, [NotNull] string upgradeType, string customUpgradeEffectName, string customUpgradeCostName) //For custom upgrade types not regular, like function overiding for this.
+        [NotNull] string upgradeTextFormat, double initialCost, [NotNull] string upgradeType, string customUpgradeEffectName, string customUpgradeCostName, double rateOfCost, double rateOfEffect) //For custom upgrade types not regular, like function overiding for this.
     {
         this.upgradeName = upgradeName ?? throw new ArgumentNullException(nameof(upgradeName));
         this.enabled = enabled;
@@ -57,5 +57,7 @@ public class UpgradeClass  //Need to update cost, cost impacted variable, levels
         this.upgradeType = upgradeType ?? throw new ArgumentNullException(nameof(upgradeType));
         this.customUpgradeEffectName = customUpgradeEffectName;
         this.customUpgradeCostName = customUpgradeCostName;
+        this.rateOfCost = rateOfCost;
+        this.rateOfEffect = rateOfEffect;
     }
 }

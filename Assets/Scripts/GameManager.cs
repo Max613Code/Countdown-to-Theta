@@ -12,15 +12,6 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, VariableClass> variables = new Dictionary<string, VariableClass>();
     //The String is the name of the variable, easier to access this way.
 
-    /*public double totalTime = 0;
-
-    public double deltaX { get; set; }
-    public double X { get; set; }
-    public double maxX { get; set; }
-    public double deltaTheta { get; set; }
-    public double Theta { get; set; }
-    public double Omega { get; set; }*/
-
     private List<VariableClass> standardDisplayVariablesToUpdate = new List<VariableClass>();
 
     private List<int> terms = new List<int>();
@@ -130,7 +121,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i=0;i<variables.Count-1;i++) //Create text object for each variable to be displayed like x, theta, omega, time
         {
-            Reference.UI.createVariableDisplayText(variables[i].name, variables[i].displaySymbol + String.Format(" = {0}", variables[i].getFormatted()));
+            Reference.UI.createVariableDisplayText(variables[i].name, variables[i].displaySymbol + String.Format(" = {0}", variables[i].getFormatted(false)));
         }
     }
 
@@ -138,7 +129,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i=0;i<variables.Count-1;i++) //Create text object for each variable to be displayed like x, theta, omega, time
         {
-            Reference.UI.updateVariabeDisplayText(variables[i].name, variables[i].displaySymbol + String.Format(" = {0}", variables[i].getFormatted()));
+            Reference.UI.updateVariabeDisplayText(variables[i].name, variables[i].displaySymbol + String.Format(" = {0}", variables[i].getFormatted(false)));
         }
     }
     

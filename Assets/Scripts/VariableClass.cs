@@ -4,6 +4,8 @@ using System.Numerics;
 public class VariableClass
 {
     public string name { get; }
+    
+    public double baseValue { get; set; }
     public double value { get; set; }
 
     public double initialValue { get; set; }//In case we need to reset or something idk.
@@ -15,15 +17,29 @@ public class VariableClass
     
     public bool enabled { get; set; }
 
-    public string getFormatted()
+    public string getFormatted(bool baseValue)
     {
-        if (this.enabled)
+        if (baseValue == true)
         {
-            return Math.Round(this.value, 3).ToString("0.000");
+            if (this.enabled)
+            {
+                return Math.Round(this.baseValue, 3).ToString("0.000");
+            }
+            else
+            {
+                return "Variable not yet enabled!";
+            }
         }
         else
         {
-            return "Variable not yet enabled!";
+            if (this.enabled)
+            {
+                return Math.Round(this.value, 3).ToString("0.000");
+            }
+            else
+            {
+                return "Variable not yet enabled!";
+            }
         }
     }
 
@@ -31,6 +47,7 @@ public class VariableClass
     {
         this.name = name;
         this.value = value;
+        this.baseValue = value;
         this.initialValue = value;
         this.level = 1;
         this.purchasedLevel = 1;
