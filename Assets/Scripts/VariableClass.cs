@@ -12,13 +12,22 @@ public class VariableClass
     public int purchasedLevel { get; set; } //For something thatmaybe auto generates a variable or something
     
     public string displaySymbol { get; set; }
+    
+    public bool enabled { get; set; }
 
     public string getFormatted()
     {
-        return Math.Round(this.value, 3).ToString("0.000");
+        if (this.enabled)
+        {
+            return Math.Round(this.value, 3).ToString("0.000");
+        }
+        else
+        {
+            return "Variable not yet enabled!";
+        }
     }
 
-    public VariableClass(string name, double value, string displaySymbol) //Regular initializer.
+    public VariableClass(string name, double value, string displaySymbol, bool enabled) //Regular initializer.
     {
         this.name = name;
         this.value = value;
@@ -26,6 +35,7 @@ public class VariableClass
         this.level = 1;
         this.purchasedLevel = 1;
         this.displaySymbol = displaySymbol;
+        this.enabled = enabled;
     }
 
 }

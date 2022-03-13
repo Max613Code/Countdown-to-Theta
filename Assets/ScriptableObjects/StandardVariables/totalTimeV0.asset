@@ -16,3 +16,4 @@ MonoBehaviour:
   initialValue: 0
   displaySymbol: t
   hasSpecialUpdatedText: 1
+  enabledOnStart: 1

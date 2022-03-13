@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: u1T1b0
   m_EditorClassIdentifier: 
   upgradeName: u1T1b0
+  enabled: 1
   variableName: b0V1
   costVariable: XV0
   upgradeText: b = {0}

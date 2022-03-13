@@ -5,13 +5,17 @@ using System.Numerics;
 public class UnlockableSO : ScriptableObject //Will unlock a upgrade, modify it or something, or unlock a variable or both i guess idk.
 {
     [SerializeField] public string unlockableName; //Use this to fetch from a dictionary
-    
-    public string upgradeName;//Which upgrade it will affect
-    public string newCustomUpgradeEffectName;
-    public string newUpgradeText;
 
-    public string unlockedVariable;
+    public string[] newUpgrades;
+    
+    public string[] upgradeNames;//Which upgrade it will affect
+    public string[] newCustomUpgradeEffectNames; //Name of the custom upgrade function thing effect that the upgrade now will be using
+    public string[] newUpgradeTexts;
+
+    public string[] unlockedVariables;
     
     public string costVariable;
-    public int cost { get; set; }
+    [SerializeField] public int cost;
+
+    public string unlockableDisplayText;
 }

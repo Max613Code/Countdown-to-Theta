@@ -16,3 +16,4 @@ MonoBehaviour:
   initialValue: 0
   displaySymbol: "\u03A9"
   hasSpecialUpdatedText: 1
+  enabledOnStart: 1

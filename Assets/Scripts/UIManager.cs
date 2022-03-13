@@ -15,6 +15,9 @@ public class UIManager : MonoBehaviour
     public RectTransform upgradeT1DisplayPanel;
     public Dictionary<string, UpgradeT1DisplayScript> upgradeDisplayDictionary = new Dictionary<string, UpgradeT1DisplayScript>(); //Makes it easier to set textvalues, still conatins prefab
 
+    public UnlockableDisplayScript unlockableDisplay;
+    public RectTransform unlockableDisplayPanel;
+    
     public void createUpdateT1(UpgradeClass upgrade) //Kind of same thing
     {
         var e = Instantiate(upgradeT1Display);
@@ -64,5 +67,20 @@ public class UIManager : MonoBehaviour
         e.VariableUpgradeDisplay =
             String.Format(upgrade.upgradeText, Reference.GM.variables[upgrade.upgradeTextFormat].getFormatted()); //Creates the text that also displays the value of the variable
         e.CostUpgradeDisplay = Math.Round(upgrade.cost, 3).ToString("0.000") + Reference.GM.variables[upgrade.costVariable].displaySymbol; //Formatting also borrowed from the var class
+    }
+
+
+
+    public void createUnlockable(UnlockableClass unlockable)
+    {
+        var e = Instantiate(unlockableDisplay);
+        e.toUnlockUpgradeDisplay = unlockable.unlockableDisplayText;
+        e.CostUpgradeDisplay = Math.Round((double)unlockable.cost, 3).ToString("0.000") + Reference.GM.variables[unlockable.costVariable].displaySymbol;
+        
+        e.transform.SetParent(
+            unlockableDisplayPanel,
+            worldPositionStays:false);
+
+        e.unlockableName = unlockable.unlockableName;
     }
 }

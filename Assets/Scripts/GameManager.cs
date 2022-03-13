@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         foreach (var variable in variableSos)
         { //Initialize the variable classes into the dictionary
-            variables[variable.name] = new VariableClass(variable.name, (double)variable.initialValue, variable.displaySymbol);
+            variables[variable.name] = new VariableClass(variable.name, (double)variable.initialValue, variable.displaySymbol, variable.enabledOnStart);
 
             if (variable.hasSpecialUpdatedText) //Will update the variable on the text above the upgrade stuff.
             {
@@ -60,8 +60,8 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
-        updateStandardVariables();
-        updateDisplayVariables(standardDisplayVariablesToUpdate);
+        updateStandardVariables(); //Update the x, t, theta and that stuff
+        updateDisplayVariables(standardDisplayVariablesToUpdate); //Update the variables needing to be displayed
         updateHistoryAndGraph();
         
     }
@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
                 omegaHistory[i] = omegaHistory[i-1];
             }
 
-            omegaHistory[0] = variables["OmegaV0"].value;
+            omegaHistory[0] = Math.Sqrt(variables["OmegaV0"].value+1);
             Reference.GraphScript.updatePoints(omegaHistory, getGraphScale());
         }
 
@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
     {
         var temp = Reference.GraphScript.graphPanel.transform as RectTransform;
         var height = temp.sizeDelta.y; //Get height of the graph panel
-        if (variables["OmegaV0"].value < height)
+        if (variables["OmegaV0"].value < 0)
         {
             return 1;
         }

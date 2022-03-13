@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: XV0
   m_EditorClassIdentifier: 
   variableName: XV0
-  initialValue: 0
+  initialValue: 1000000
   displaySymbol: x
   hasSpecialUpdatedText: 1
+  enabledOnStart: 1

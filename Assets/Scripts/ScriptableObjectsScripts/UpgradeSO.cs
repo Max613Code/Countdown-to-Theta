@@ -5,6 +5,7 @@ using System.Numerics;
 public class UpgradeSO : ScriptableObject
 {
     [SerializeField] public string upgradeName; //Must be unique, used to fetch info from UM from a dictionary as like the variables.
+    public bool enabled;
     public string variableName;
     public string costVariable;
     public string upgradeText; //Like "a={0}"
@@ -20,7 +21,7 @@ public class UpgradeSO : ScriptableObject
     [SerializeField] public float rateOfCost;
     [SerializeField] public float rateOfEffect;
 
-    [Header("Custom Effect Name")] [SerializeField]
+    [Header("Custom Effect Name")] [SerializeField] //Name of the custom function to calculate the effect
     public string customUpgradeEffectName;
 
     [Header("Custom Cost (Function) Name")] [SerializeField]

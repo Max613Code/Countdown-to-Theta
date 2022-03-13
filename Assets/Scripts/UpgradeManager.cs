@@ -15,21 +15,32 @@ public class UpgradeManager : MonoBehaviour
         {
             if (upgrade.type == "regular")
             {
-                upgrades[upgrade.upgradeName] = new UpgradeClass(upgrade.upgradeName, upgrade.variableName,upgrade.costVariable,
+                upgrades[upgrade.upgradeName] = new UpgradeClass(upgrade.upgradeName, upgrade.enabled, upgrade.variableName,
+                    upgrade.costVariable,
                     upgrade.upgradeText, upgrade.upgradeTextFormatVariableName, upgrade.initialCost, upgrade.type,
                     upgrade.rateOfCost,
                     upgrade.rateOfEffect);
-                
+
             }
             else if (upgrade.type == "custom")
-                upgrades[upgrade.upgradeName] = new UpgradeClass(upgrade.upgradeName, upgrade.variableName, upgrade.costVariable,
-                    upgrade.upgradeText, upgrade.upgradeTextFormatVariableName, upgrade.initialCost,upgrade.type, upgrade.customUpgradeEffectName, upgrade.customUpgradeCostName);
+                upgrades[upgrade.upgradeName] = new UpgradeClass(upgrade.upgradeName, upgrade.enabled, upgrade.variableName,
+                    upgrade.costVariable,
+                    upgrade.upgradeText, upgrade.upgradeTextFormatVariableName, upgrade.initialCost, upgrade.type,
+                    upgrade.customUpgradeEffectName, upgrade.customUpgradeCostName);
+            
+            if (upgrade.enabled == true)
+            {
+                Reference.UI.createUpdateT1(upgrades[upgrade.upgradeName]);
+            }
 
-            Reference.UI.createUpdateT1(upgrades[upgrade.upgradeName]);
-            
-            
-            
+
         }
+    }
+
+    public void enable(UpgradeClass upgrade)
+    {
+        upgrade.enabled = true;
+        Reference.UI.createUpdateT1(upgrades[upgrade.upgradeName]);
     }
 
     public void purchase(string upgradeName, int amount)
@@ -76,12 +87,29 @@ public class UpgradeManager : MonoBehaviour
     
     
     
-    public double customUpgradeFunction(VariableClass var, UpgradeClass upgrade, string whichCustom)
+    public double customUpgradeFunction(VariableClass var, UpgradeClass upgrade, string whichCustom) //For effect to update variable
     {
         //Debug.Log(var.name + " " + whichCustom);
-        if (var.name == "b0V1" && whichCustom == "b0V1 additive square") //Best way i could think of for having custom upgrade functions, 
-        {
-            return var.value + (double)var.level * (double)var.level/10;
+        if (var.name == "b0V1" ) //Best way i could think of for having custom upgrade functions, 
+        { 
+            double result = 0;
+            if (whichCustom.Contains("b0V1 additive square")) {
+                result = var.value + (double) var.level * (double) var.level / 10;
+            }
+
+            if (whichCustom.Contains("b1V1 power"))
+            {
+                result = Math.Pow(result, Reference.GM.variables["b1V1"].value);
+            }
+
+            return result;
+        } 
+        else if (var.name == "b1V1") 
+        {   
+            if (whichCustom.Contains("b1V1 additive inverse")) { 
+                updateVariable(Reference.GM.variables["b0V1"], "b1V1 power");
+                return var.value + 0.725 / ((double) var.level+2);
+            }
         }
         else
         {
@@ -91,12 +119,31 @@ public class UpgradeManager : MonoBehaviour
         return 0;
     }
 
+    public void updateVariable(VariableClass var, string whichCustom)
+    {
+        if (var.name == "b0V1")
+        {
+            double result = var.value;
+            if (whichCustom.Contains("b1V1 power"))
+            {
+                result = math.pow(result, Reference.GM.variables["b1V1"].value);
+            }
+
+            var.value = result;
+        }
+        
+    }
+
     public double customCostFunction(VariableClass var, UpgradeClass upgrade, string whichCustom)
     {
         Debug.Log(whichCustom);
         if (var.name == "b0V1" && whichCustom == "b0V1 lowering cost") //Best way i could think of for having custom cost functions, 
         {
             return upgrade.cost *= 1.2 + Math.Min(0.2 / (var.level / 10), 0.2);//Cost goes from 1.4 to 1.2
+        }
+        else if (whichCustom.Contains("default"))
+        {
+            return upgrade.cost *= upgrade.rateOfCost;
         }
         else
         {

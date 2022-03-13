@@ -8,4 +8,5 @@ public class VariableSO : ScriptableObject
     public float initialValue;
     public string displaySymbol;
     public bool hasSpecialUpdatedText = false;
+    public bool enabledOnStart = false;
 }

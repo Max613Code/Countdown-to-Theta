@@ -16,3 +16,4 @@ MonoBehaviour:
   initialValue: 0
   displaySymbol: max(x)
   hasSpecialUpdatedText: 1
+  enabledOnStart: 1

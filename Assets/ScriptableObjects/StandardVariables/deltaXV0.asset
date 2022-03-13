@@ -16,3 +16,4 @@ MonoBehaviour:
   initialValue: 0
   displaySymbol: dx
   hasSpecialUpdatedText: 0
+  enabledOnStart: 1
