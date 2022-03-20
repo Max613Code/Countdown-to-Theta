@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,9 @@ public class UIManager : MonoBehaviour
     public UpgradeT1DisplayScript upgradeT1Display; 
     public RectTransform upgradeT1DisplayPanel;
     public Dictionary<string, UpgradeT1DisplayScript> upgradeDisplayDictionary = new Dictionary<string, UpgradeT1DisplayScript>(); //Makes it easier to set textvalues, still conatins prefab
-
+    public Dictionary<string, int> upgradeT1DisplayOrdering = new Dictionary<string, int>(); //the order and the name of the upgrade
+    
+    
     public UnlockableDisplayScript unlockableDisplay;
     public RectTransform unlockableDisplayPanel;
     
@@ -29,10 +32,25 @@ public class UIManager : MonoBehaviour
         e.transform.SetParent(
             upgradeT1DisplayPanel,
             worldPositionStays:false);
-
+        
         e.upgradeName = upgrade.upgradeName;
 
         upgradeDisplayDictionary[upgrade.upgradeName] = e;
+        upgradeT1DisplayOrdering[upgrade.upgradeName] = upgrade.hierarchyIndex;
+        
+        updateUpgradeT1Display();
+    }
+
+    public void updateUpgradeT1Display() //Change order based on hierarchyIndex
+    {
+        upgradeT1DisplayOrdering =
+            (from entry in upgradeT1DisplayOrdering orderby entry.Value ascending select entry).ToDictionary(
+                pair => pair.Key, pair => pair.Value); //Sort and convert back to dictionary
+        for (int i = 0; i < upgradeT1DisplayOrdering.Count; i++)
+        {
+            //Debug.Log(upgradeT1DisplayOrdering.Values.ToList()[i] + " "+i*100);
+            upgradeDisplayDictionary[upgradeT1DisplayOrdering.Keys.ToList()[i]].transform.SetSiblingIndex(i+1);
+        }
     }
 
     public void createVariableDisplayText(string varName, string displayString) //displayString already contains the variable value, formatted in GM

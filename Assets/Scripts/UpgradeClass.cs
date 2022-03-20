@@ -16,6 +16,7 @@ public class UpgradeClass  //Need to update cost, cost impacted variable, levels
     public string costVariable { get; set; } //Name of which variable it costs 
     public double cost { get; set; } 
     public double initialCost { get; set; }
+    public int hierarchyIndex { get; set; }
 
     public string upgradeType { get; set; }
     
@@ -28,7 +29,7 @@ public class UpgradeClass  //Need to update cost, cost impacted variable, levels
     public string customUpgradeCostName { get; set; }//Which cost function it uses, regular for just the regular rateOfCost one.
 
     public UpgradeClass([NotNull] string upgradeName, [NotNull] bool enabled, [NotNull] string variableName, [NotNull] string costVariable, [NotNull] string upgradeText,
-        [NotNull] string upgradeTextFormat, double initialCost, [NotNull] string upgradeType, double rateOfCost, double rateOfEffect)
+        [NotNull] string upgradeTextFormat, double initialCost, int hierarchyIndex, [NotNull] string upgradeType, double rateOfCost, double rateOfEffect)
     {
         this.upgradeName = upgradeName ?? throw new ArgumentNullException(nameof(upgradeName));
         this.enabled = enabled;
@@ -38,13 +39,14 @@ public class UpgradeClass  //Need to update cost, cost impacted variable, levels
         this.upgradeTextFormat = upgradeTextFormat ?? throw new ArgumentNullException(nameof(upgradeTextFormat));
         this.initialCost = initialCost; 
         this.cost = initialCost;
+        this.hierarchyIndex = hierarchyIndex;
         this.upgradeType = upgradeType ?? throw new ArgumentNullException(nameof(upgradeType));
         this.rateOfCost = rateOfCost;
         this.rateOfEffect = rateOfEffect;
     }
 
     public UpgradeClass([NotNull] string upgradeName, [NotNull] bool enabled, [NotNull] string variableName, [NotNull] string costVariable, [NotNull] string upgradeText,
-        [NotNull] string upgradeTextFormat, double initialCost, [NotNull] string upgradeType, string customUpgradeEffectName, string customUpgradeCostName, double rateOfCost, double rateOfEffect) //For custom upgrade types not regular, like function overiding for this.
+        [NotNull] string upgradeTextFormat, double initialCost, int hierarchyIndex, [NotNull] string upgradeType, string customUpgradeEffectName, string customUpgradeCostName, double rateOfCost, double rateOfEffect) //For custom upgrade types not regular, like function overiding for this.
     {
         this.upgradeName = upgradeName ?? throw new ArgumentNullException(nameof(upgradeName));
         this.enabled = enabled;
@@ -54,6 +56,7 @@ public class UpgradeClass  //Need to update cost, cost impacted variable, levels
         this.upgradeTextFormat = upgradeTextFormat ?? throw new ArgumentNullException(nameof(upgradeTextFormat)); 
         this.initialCost = initialCost;
         this.cost = initialCost;
+        this.hierarchyIndex = hierarchyIndex;
         this.upgradeType = upgradeType ?? throw new ArgumentNullException(nameof(upgradeType));
         this.customUpgradeEffectName = customUpgradeEffectName;
         this.customUpgradeCostName = customUpgradeCostName;

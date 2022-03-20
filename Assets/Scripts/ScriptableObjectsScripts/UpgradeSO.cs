@@ -10,6 +10,8 @@ public class UpgradeSO : ScriptableObject
     public string costVariable;
     public string upgradeText; //Like "a={0}"
     public string upgradeTextFormatVariableName; //Like "a0V1"
+    public int hierarchyIndex;
+    
     
     [SerializeField] public float initialCost;
     

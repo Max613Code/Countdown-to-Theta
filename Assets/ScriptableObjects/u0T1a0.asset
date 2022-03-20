@@ -18,6 +18,7 @@ MonoBehaviour:
   costVariable: XV0
   upgradeText: a = {0}
   upgradeTextFormatVariableName: a0V1
+  hierarchyIndex: 1
   initialCost: 10
   type: regular
   rateOfCost: 1.17

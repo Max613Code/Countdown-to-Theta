@@ -17,7 +17,7 @@ public class UpgradeManager : MonoBehaviour
             {
                 upgrades[upgrade.upgradeName] = new UpgradeClass(upgrade.upgradeName, upgrade.enabled, upgrade.variableName,
                     upgrade.costVariable,
-                    upgrade.upgradeText, upgrade.upgradeTextFormatVariableName, upgrade.initialCost, upgrade.type,
+                    upgrade.upgradeText, upgrade.upgradeTextFormatVariableName, upgrade.initialCost, upgrade.hierarchyIndex, upgrade.type,
                     upgrade.rateOfCost,
                     upgrade.rateOfEffect);
 
@@ -25,7 +25,7 @@ public class UpgradeManager : MonoBehaviour
             else if (upgrade.type == "custom")
                 upgrades[upgrade.upgradeName] = new UpgradeClass(upgrade.upgradeName, upgrade.enabled, upgrade.variableName,
                     upgrade.costVariable,
-                    upgrade.upgradeText, upgrade.upgradeTextFormatVariableName, upgrade.initialCost, upgrade.type,
+                    upgrade.upgradeText, upgrade.upgradeTextFormatVariableName, upgrade.initialCost, upgrade.hierarchyIndex, upgrade.type,
                     upgrade.customUpgradeEffectName, upgrade.customUpgradeCostName, upgrade.rateOfCost, upgrade.rateOfEffect);
             
             if (upgrade.enabled == true)
