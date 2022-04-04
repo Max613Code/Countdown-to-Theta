@@ -69,6 +69,16 @@
      <Compile Include="Assets\Scripts\Reference.cs" />
      <Compile Include="Assets\Scripts\Graph.cs" />
      <Compile Include="Assets\Scripts\Upgrade.cs" />
+     <Compile Include="Assets\Everloop\Demo\Scripts\AudioSourceReference.cs" />
+     <Compile Include="Assets\Everloop\Demo\Scripts\MusicButton.cs" />
+     <Compile Include="Assets\Everloop\Demo\Scripts\LayerToggleListener.cs" />
+     <Compile Include="Assets\Everloop\Scripts\EverloopController.cs" />
+     <Compile Include="Assets\Everloop\Demo\Scripts\RandomizeButton.cs" />
+     <Compile Include="Assets\Everloop\Demo\Scripts\UnmuteController.cs" />
+     <Compile Include="Assets\Everloop\Demo\Scripts\AnimationToggle.cs" />
+     <Compile Include="Assets\Everloop\Demo\Scripts\LayersController.cs" />
+     <Compile Include="Assets\Everloop\Demo\Scripts\TimeSlider.cs" />
+     <Compile Include="Assets\Everloop\Scripts\Utils.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
